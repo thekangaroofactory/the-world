@@ -40,7 +40,7 @@ body <- dashboardBody(
               column(width = 3,
                      
                      # -- search
-                     map_search_Input("world"),
+                     map_search_Input("worldmap-world"),
                      
                      # -- locations & countries
                      worldmap_INPUT("worldmap")),
@@ -48,8 +48,8 @@ body <- dashboardBody(
               
               # -- main area (map)
               column(width = 9,
-                     map_freeze_INPUT("world"),
-                     map_UI("world")))),
+                     map_freeze_INPUT("worldmap-world"),
+                     map_UI("worldmap-world")))),
     
     
     # --------------------------------------------------------------------------
@@ -65,18 +65,14 @@ body <- dashboardBody(
               column(width = 3,
                      
                      # -- search
-                     map_search_Input("trip"),
-                     trip_panel_UI("tripmngr"),
-                     
-                     #route_UI("routemngr"),
-                     
-                     ),
-              
+                     map_search_Input("tripmngr-trip"),
+                     trip_panel_UI("tripmngr")),
+            
                      
               # -- main area (trip)
               column(width = 9,
-                     map_freeze_INPUT("trip"),
-                     map_UI("trip")))),
+                     map_freeze_INPUT("tripmngr-trip"),
+                     map_UI("tripmngr-trip")))),
     
     
     # --------------------------------------------------------------------------
@@ -109,7 +105,7 @@ body <- dashboardBody(
             # -- Admin UI
             fluidRow(
               column(width = 12,
-                     kitems::admin_ui("routemngr-route")))),
+                     kitems::admin_ui("tripmngr-route")))),
     
     # -- kitems admin (trip)
     tabItem(tabName = "trip",
@@ -126,14 +122,6 @@ body <- dashboardBody(
             fluidRow(
               column(width = 12,
                      kitems::admin_ui("tripmngr-step")))),
-    
-    # -- kitems admin (transport)
-    tabItem(tabName = "transport",
-            
-            # -- Admin UI
-            fluidRow(
-              column(width = 12,
-                     kitems::admin_ui("tripmngr-transport")))),
     
     # -- kitems admin (accommodation)
     tabItem(tabName = "accommodation",

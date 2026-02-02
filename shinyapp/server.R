@@ -21,8 +21,6 @@ shinyServer(
     # --------------------------------------------------------------------------
     
     locationMngrId <- "locationmngr"
-    routeId <- "route"
-    
     
     # --------------------------------------------------------------------------
     # Settings
@@ -60,17 +58,12 @@ shinyServer(
                                                                    "route",
                                                                    "trip",
                                                                    "step",
-                                                                   "transport",
                                                                    "accommodation")))
 
     
     # --------------------------------------------------------------------------
     # Modules
     # --------------------------------------------------------------------------
-    
-    # -- the maps
-    worldMap <- map_Server(id = "world", r = r, verbose = TRUE)
-    tripMap <- map_Server(id = "trip", r = r, verbose = TRUE)
     
     # -- locations
     locations <- location_Server(id = locationMngrId, r, path)
@@ -81,19 +74,16 @@ shinyServer(
     # -- tracks
     tracks <- track_Server(id = "track", path)
     
-    # -- transports
-    routes <- route_Server(id = "routemngr", routeId, r, path)
-    
     
     # --------------------------------------------------------------------------
     # Activity modules
     # --------------------------------------------------------------------------
 
     # -- worldmap
-    worldmap_Server(id = "worldmap", map = worldMap, locations, countries, tracks)
+    worldmap_Server(id = "worldmap", locations, countries, tracks)
         
     # -- trips
-    trip_Server(id = "tripmngr", map = tripMap, locations, location_ns = locationMngrId, routes, r, path)
+    tripManager_Server(id = "tripmngr", locations, countries, location_ns = locationMngrId, r, path)
 
     
     # --------------------------------------------------------------------------
